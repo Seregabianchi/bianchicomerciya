@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2E8B57">
+    <title>Комерційна пропозиція | Кав'ярні самообслуговування | BianchiProf</title>
+
+    <!-- Шрифти -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Сучасні змінні кольорів */
+        :root {
+            /* Основні кольори BianchiProf */
+            --primary: #2E8B57;
+            --primary-dark: #006400;
+            --primary-light: #E8F5E9;
+            --accent: #32CD32;
+            --gradient-primary: linear-gradient(135deg, #2E8B57 0%, #32CD32 100%);
+            --gradient-primary-dark: linear-gradient(135deg, #006400 0%, #2E8B57 100%);
+            --shadow-primary: 0 10px 30px rgba(46, 139, 87, 0.15);
+
+            /* Загальні кольори для світлої теми */
+            --text-dark: #222222;
+            --text-medium: #444444;
+            --text-light: #666666;
+            --text-white: #FFFFFF;
+            --background: #f8f9fa;
+            --background-light: #ffffff;
+            --card-bg: #ffffff;
+            --card-bg-hover: #f0f7f0;
+            --border-color: rgba(46, 139, 87, 0.15);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.1);
+
+            /* Ефекти */
+            --glow-primary: 0 0 20px rgba(50, 205, 50, 0.2);
+        }
+
+        /* Скидання стилів */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            touch-action: manipulation;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Анімаційні частинки фону */
+        .particles-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle 20s infinite linear;
+            background: rgba(46, 139, 87, 0.05);
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Секції */
+        .section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(46, 139, 87, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(50, 205, 50, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            position: relative;
+            color: var(--primary-dark);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .section-title.center {
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-medium);
+            max-width: 800px;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section-subtitle.center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* Хедер */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(46, 139, 87, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Логотип */
+        .logo-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-3d:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-3d img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .logo-3d:hover img {
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Кнопка CTA в хедері */
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            min-height: 56px;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(46, 139, 87, 0.25);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Герой-секція */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(46, 139, 87, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(50, 205, 50, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(80px);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            box-shadow: var(--glow-primary);
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-medium);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            font-weight: 400;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        /* Анімаційна чашка кави */
+        .coffee-cup-3d {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg) rotateY(-20deg);
+            animation: floatCup 6s ease-in-out infinite;
+        }
+
+        .cup-3d {
+            position: absolute;
+            width: 140px;
+            height: 100px;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            border-radius: 0 0 50px 50px;
+            bottom: 50px;
+            left: 30px;
+            overflow: hidden;
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                inset 0 5px 15px rgba(255, 255, 255, 0.1);
+            transform: translateZ(20px);
+        }
+
+        .liquid-3d {
+            position: absolute;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, #4A2C2A 0%, #8B4513 100%);
+            bottom: 0;
+            border-radius: 0 0 50px 50px;
+            animation: fillCoffee3D 4s ease-in-out infinite alternate;
+        }
+
+        .handle-3d {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            border: 20px solid #8B4513;
+            border-left: none;
+            border-radius: 0 50px 50px 0;
+            right: -15px;
+            top: 50px;
+            transform: translateZ(10px);
+        }
+
+        .steam-container {
+            position: absolute;
+            top: -40px;
+            left: 60px;
+            width: 80px;
+            height: 100px;
+        }
+
+        .steam-particle {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: steamRise3D 3s ease-in-out infinite;
+        }
+
+        /* Картки переваг */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-card-3d {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: translateZ(0);
+            opacity: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .benefit-card-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .benefit-card-3d:hover {
+            transform: translateY(-15px) translateZ(20px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(46, 139, 87, 0.3);
+            background: var(--card-bg-hover);
+        }
+
+        .benefit-icon-3d {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .benefit-title-3d {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        /* Формат рішення */
+        .solution-3d {
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05));
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 60px 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .solution-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: translateX(-100%);
+            animation: shine 8s infinite;
+        }
+
+        /* Моделі співпраці */
+        .models-grid-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .model-card-3d {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            opacity: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .model-card-3d.featured {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-large);
+        }
+
+        .model-card-3d.featured::before {
+            content: '🌟 РЕКОМЕНДОВАНО';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-primary);
+            z-index: 2;
+        }
+
+        .model-card-3d:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Таймлайн */
+        .timeline-3d {
+            position: relative;
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 40px 0;
+        }
+
+        .timeline-3d::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--gradient-primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: var(--glow-primary);
+        }
+
+        .timeline-item-3d {
+            width: 50%;
+            padding: 0 60px 60px 0;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .timeline-item-3d:nth-child(even) {
+            left: 50%;
+            padding: 0 0 60px 60px;
+            transform: translateX(50px);
+        }
+
+        .timeline-content-3d {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content-3d:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-circle-3d {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            top: 50px;
+            right: -15px;
+            z-index: 1;
+            box-shadow: var(--glow-primary);
+        }
+
+        .timeline-item-3d:nth-child(even) .timeline-circle-3d {
+            left: -15px;
+            right: auto;
+        }
+
+        /* Секція з фотографіями */
+        .photos-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.03), rgba(50, 205, 50, 0.03));
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .photo-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-large);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-card:hover .photo-image {
+            transform: scale(1.05);
+        }
+
+        .photo-caption {
+            padding: 25px 30px;
+            background: var(--card-bg);
+        }
+
+        .photo-caption h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .photo-caption p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Кнопка на сайт */
+        .website-button-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05));
+        }
+
+        .website-button-wrapper {
+            text-align: center;
+        }
+
+        /* Контактні картки */
+        .contact-grid-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .contact-card-3d {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card-3d:hover {
+            transform: translateY(-15px);
+            border-color: rgba(46, 139, 87, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon-3d {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Кнопки */
+        .button-3d {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-primary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            min-height: 60px;
+            letter-spacing: 0.5px;
+        }
+
+        .button-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .button-3d:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(46, 139, 87, 0.25);
+        }
+
+        .button-3d:hover::before {
+            left: 100%;
+        }
+
+        .button-large {
+            padding: 22px 45px;
+            font-size: 1.2rem;
+            min-height: 70px;
+        }
+
+        /* Анімації */
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-50px) translateX(50px); }
+            50% { transform: translateY(-100px) translateX(0); }
+            75% { transform: translateY(-50px) translateX(-50px); }
+        }
+
+        @keyframes floatCup {
+            0%, 100% { transform: rotateX(-10deg) rotateY(-20deg) translateY(0); }
+            50% { transform: rotateX(-15deg) rotateY(-25deg) translateY(-20px); }
+        }
+
+        @keyframes fillCoffee3D {
+            0% { height: 30%; }
+            100% { height: 85%; }
+        }
+
+        @keyframes steamRise3D {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.5);
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            20%, 100% { transform: translateX(100%); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Класи для анімації */
+        .animate {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.3s; }
+        .animate-delay-2 { animation-delay: 0.6s; }
+        .animate-delay-3 { animation-delay: 0.9s; }
+        .animate-delay-4 { animation-delay: 1.2s; }
+        .animate-delay-5 { animation-delay: 1.5s; }
+
+        /* Адаптивність */
+        @media (max-width: 1200px) {
+            .hero-title { font-size: 3.5rem; }
+            .section-title { font-size: 2.8rem; }
+            .timeline-3d::before { left: 30px; }
+            .timeline-item-3d { width: 100%; padding-left: 80px; padding-right: 0; }
+            .timeline-item-3d:nth-child(even) { left: 0; padding-left: 80px; padding-right: 0; }
+            .timeline-circle-3d { left: 15px !important; right: auto !important; }
+            .photos-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            .section-title { font-size: 2.3rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .benefits-grid, .models-grid-3d, .contact-grid-3d { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; gap: 20px; }
+            .logo-container { flex-direction: column; gap: 20px; }
+            .coffee-cup-3d { transform: scale(0.8); }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.2rem; }
+            .section-title { font-size: 2rem; }
+            .hero { padding: 150px 0 60px; }
+            .section { padding: 60px 0; }
+            .benefit-card-3d, .model-card-3d, .contact-card-3d { padding: 30px 20px; }
+            .photos-grid { gap: 20px; }
+            .photo-card { border-radius: 15px; }
+            .photo-image { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анімаційні частинки фону -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Хедер -->
+    <header id="header">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo-container">
+                    <div class="logo-3d">
+                        <!-- SVG лого BianchiProf -->
+                        <svg viewBox="0 0 250 70" xmlns="http://www.w3.org/2000/svg" class="logo">
+                            <defs>
+                                <linearGradient id="bianchiGradient3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2E8B57" />
+                                    <stop offset="50%" stop-color="#32CD32" />
+                                    <stop offset="100%" stop-color="#228B22" />
+                                </linearGradient>
+                                <filter id="shadow3D" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="rgba(0, 100, 0, 0.2)"/>
+                                </filter>
+                            </defs>
+                            <rect x="10" y="10" width="230" height="50" rx="15" fill="url(#bianchiGradient3D)" filter="url(#shadow3D)" />
+                            <text x="125" y="42" font-family="Montserrat, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">BianchiProf</text>
+                            <text x="125" y="62" font-family="Montserrat, sans-serif" font-size="12" fill="white" text-anchor="middle">Premium Coffee</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <a href="#contact-info" class="nav-cta animate">
+                    <i class="fas fa-handshake"></i>
+                    <span>Обговорити співпрацю</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-секція -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <h1 class="hero-title animate">КАВ'ЯРНІ САМООБСЛУГОВУВАННЯ</h1>
+                <p class="hero-subtitle animate animate-delay-1">Інноваційне рішення для бізнес-просторів нового формату</p>
+
+                <!-- 3D Анімація чашки кави -->
+                <div class="coffee-cup-3d animate animate-delay-2">
+                    <div class="cup-3d">
+                        <div class="liquid-3d"></div>
+                    </div>
+                    <div class="handle-3d"></div>
+                    <div class="steam-container">
+                        <div class="steam-particle" style="left: 0; animation-delay: 0s;"></div>
+                        <div class="steam-particle" style="left: 30px; animation-delay: 0.5s;"></div>
+                        <div class="steam-particle" style="left: 60px; animation-delay: 1s;"></div>
+                    </div>
+                </div>
+
+                <p class="animate animate-delay-3" style="max-width: 900px; margin: 40px auto 0; font-size: 1.2rem; line-height: 1.8; color: var(--text-medium);">
+                    Кавова компанія <strong style="color: var(--primary);">BianchiProf</strong> пропонує сучасне рішення для офісів, торгових центрів, фітнес-клубів, підприємств та приватних клінік — автоматичні кав'ярні самообслуговування, які підвищують лояльність клієнтів і співробітників, генеруючи додатковий дохід.
+                </p>
+            </div>
+        </section>
+
+        <!-- Переваги співпраці -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title animate">Ключові переваги для вашого бізнесу</h2>
+                <p class="section-subtitle animate animate-delay-1">Наше рішення приносить конкретні цінності для різних типів бізнес-просторів:</p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card-3d animate animate-delay-1">
+                        <div class="benefit-icon-3d">💰</div>
+                        <h3 class="benefit-title-3d">Додатковий дохід</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Генеруйте прибуток без капітальних інвестицій. Кавова зона створює додатковий потік клієнтів та збільшує середній чек.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card-3d animate animate-delay-2">
+                        <div class="benefit-icon-3d">⭐</div>
+                        <h3 class="benefit-title-3d">Підвищення комфорту</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Забезпечте клієнтам та співробітникам доступ до якісної кави в будь-який час. Покращуйте досвід перебування у вашому закладі.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card-3d animate animate-delay-3">
+                        <div class="benefit-icon-3d">👥</div>
+                        <h3 class="benefit-title-3d">Відсутність кадрових витрат</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Повна автоматизація процесу. Не потрібні додаткові співробітники — обладнання працює в режимі 24/7.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card-3d animate animate-delay-1">
+                        <div class="benefit-icon-3d">📈</div>
+                        <h3 class="benefit-title-3d">Збільшення лояльності</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Клієнти та співробітники отримують додаткову причину обирати саме ваш заклад. Впровадження програм лояльності.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card-3d animate animate-delay-2">
+                        <div class="benefit-icon-3d">🔄</div>
+                        <h3 class="benefit-title-3d">Масштабованість</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Після успішного запуску можливе швидке розгортання на всіх ваших об'єктах з єдиною системою управління.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card-3d animate animate-delay-3">
+                        <div class="benefit-icon-3d">📊</div>
+                        <h3 class="benefit-title-3d">Повна аналітика</h3>
+                        <p style="color: var(--text-medium); font-size: 1.1rem; line-height: 1.6;">
+                            Детальні звіти про продажі, популярні напої, години пікової активності для оптимізації бізнес-процесів.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Формат рішення -->
+        <section class="section" style="background: rgba(46, 139, 87, 0.03);">
+            <div class="container">
+                <h2 class="section-title animate">Формат рішення</h2>
+                <p class="section-subtitle animate animate-delay-1">Готове комплексне рішення "під ключ" для будь-якого типу приміщення:</p>
+
+                <div class="solution-3d animate animate-delay-2">
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-size: 2.2rem; margin-bottom: 40px; color: var(--primary-dark); text-align: center;">
+                        Компактна кавова зона (1–2 м²)
+                    </h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px;">
+                        <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); transition: all 0.3s ease; box-shadow: var(--shadow);">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px; text-align: center;">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <h4 style="color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; text-align: center;">Преміум-обладнання</h4>
+                            <p style="font-size: 1rem; color: var(--text-medium); text-align: center;">
+                                Автоматична кавомашина преміум-класу для приготування кави, чаю, какао та шоколаду.
+                            </p>
+                        </div>
+
+                        <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); transition: all 0.3s ease; box-shadow: var(--shadow);">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px; text-align: center;">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h4 style="color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; text-align: center;">Індивідуальний дизайн</h4>
+                            <p style="font-size: 1rem; color: var(--text-medium); text-align: center;">
+                                Адаптація під інтер'єр вашого закладу з використанням корпоративних кольорів.
+                            </p>
+                        </div>
+
+                        <div style="background: var(--card-bg); padding: 30px; border-radius: 20px; border: 1px solid var(--border-color); transition: all 0.3s ease; box-shadow: var(--shadow);">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 20px; text-align: center;">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h4 style="color: var(--primary-dark); margin-bottom: 15px; font-size: 1.3rem; text-align: center;">Безконтактна оплата</h4>
+                            <p style="font-size: 1rem; color: var(--text-medium); text-align: center;">
+                                Карткою, смартфоном (Apple Pay, Google Pay) – сучасні способи оплати.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; padding-top: 30px; border-top: 2px dashed rgba(46, 139, 87, 0.2);">
+                        <p style="font-style: italic; text-align: center; font-size: 1.1rem; color: var(--text-medium);">
+                            Обладнання займає мінімум місця і може бути розміщене в холах, біля рецепції, у фуд-кортах, зонах відпочинку або коридорах.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Цільові сегменти -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title animate">Для кого це рішення?</h2>
+                <p class="section-subtitle animate animate-delay-1">Наша система ідеально підходить для таких типів бізнесу:</p>
+
+                <div class="models-grid-3d">
+                    <div class="model-card-3d animate animate-delay-1">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Офісні центри
+                        </h3>
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Підвищення продуктивності співробітників</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Зменшення часу на перерви</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Додатковий сервіс для орендарів</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="model-card-3d featured animate animate-delay-2">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Торгові центри
+                        </h3>
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Збільшення часу перебування відвідувачів</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Додатковий дохід з мінімальними витратами</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Покращення клієнтського досвіду</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="model-card-3d animate animate-delay-3">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Фітнес-клуби
+                        </h3>
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Додатковий сервіс для клієнтів</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Можливість пропозиції здорових напоїв</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Підвищення лояльності членів клубу</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 40px;">
+                    <div class="model-card-3d animate animate-delay-1" style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05));">
+                        <div style="font-size: 3rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Промислові підприємства
+                        </h3>
+                        <p style="text-align: center; font-size: 1.05rem; color: var(--text-medium); line-height: 1.7;">
+                            Забезпечення персоналу якісними напоями без необхідності відвідування сторонніх закладів.
+                        </p>
+                    </div>
+
+                    <div class="model-card-3d animate animate-delay-2" style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05));">
+                        <div style="font-size: 3rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Медичні заклади
+                        </h3>
+                        <p style="text-align: center; font-size: 1.05rem; color: var(--text-medium); line-height: 1.7;">
+                            Комфорт для пацієнтів та медперсоналу, додатковий сервіс в зонах очікування.
+                        </p>
+                    </div>
+
+                    <div class="model-card-3d animate animate-delay-3" style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05));">
+                        <div style="font-size: 3rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Навчальні заклади
+                        </h3>
+                        <p style="text-align: center; font-size: 1.05rem; color: var(--text-medium); line-height: 1.7;">
+                            Сервіс для студентів, викладачів та відвідувачів у будівлях університетів та коледжів.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Моделі співпраці -->
+        <section class="section" style="background: rgba(46, 139, 87, 0.03);">
+            <div class="container">
+                <h2 class="section-title animate">Модель співпраці</h2>
+                <p class="section-subtitle animate animate-delay-1">Пропонуємо гнучкі умови, адаптовані під ваш бізнес:</p>
+
+                <div class="models-grid-3d">
+                    <div class="model-card-3d animate animate-delay-1">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Відсоток від обороту
+                        </h3>
+
+                        <div style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(50, 205, 50, 0.1)); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 10px;">
+                                0 грн
+                            </div>
+                            <div style="text-align: center; color: var(--text-medium); font-size: 1rem;">Ваші інвестиції</div>
+                        </div>
+
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Мінімальні ризики</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Дохід залежить від реальних продажів</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Ідеально для тестування концепції</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="model-card-3d featured animate animate-delay-2">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Фіксована плата + відсоток
+                        </h3>
+
+                        <div style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(50, 205, 50, 0.1)); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                            <div style="font-size: 2rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 10px;">
+                                Символічна плата
+                            </div>
+                            <div style="text-align: center; color: var(--text-medium); font-size: 1rem;">Ваші інвестиції</div>
+                        </div>
+
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Гарантований мінімальний дохід</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Участь у прибутку від продажів</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Найпопулярніша модель серед партнерів</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="model-card-3d animate animate-delay-3">
+                        <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 25px; text-align: center;">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 25px; text-align: center;">
+                            Оренда обладнання
+                        </h3>
+
+                        <div style="background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(50, 205, 50, 0.1)); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); text-align: center; margin-bottom: 10px;">
+                                Фіксована оренда
+                            </div>
+                            <div style="text-align: center; color: var(--text-medium); font-size: 1rem;">Ваші інвестиції</div>
+                        </div>
+
+                        <ul style="list-style: none; margin-top: 20px;">
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Повний контроль над ціною</span>
+                            </li>
+                            <li style="padding: 15px 0; border-bottom: 1px dashed rgba(0, 0, 0, 0.1); display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Можливість власного маркетингу</span>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; align-items: flex-start;">
+                                <i class="fas fa-check" style="color: var(--primary); margin-right: 12px; margin-top: 3px; flex-shrink: 0; font-size: 1rem;"></i>
+                                <span style="font-size: 1.05rem; color: var(--text-medium);">Прозора бухгалтерія</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="model-card-3d animate animate-delay-4" style="max-width: 900px; margin: 50px auto 0; background: linear-gradient(135deg, rgba(46, 139, 87, 0.05), rgba(50, 205, 50, 0.05)); padding: 40px; text-align: center;">
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.6rem; margin-bottom: 20px; color: var(--primary-dark);">
+                        <i class="fas fa-star" style="color: var(--primary); margin-right: 12px; font-size: 1.3rem;"></i>
+                        Пілотний проект – індивідуальні умови
+                    </h3>
+                    <p style="text-align: center; font-size: 1.2rem; color: var(--text-medium); line-height: 1.7;">
+                        Для перших об'єктів пропонуємо розробити індивідуальну модель співпраці зі спеціальними умовами, щоб протестувати рішення та адаптувати його під специфіку вашого бізнесу.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Таймлайн реалізації -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title center animate">Етапи реалізації проекту</h2>
+                <p class="section-subtitle center animate animate-delay-1">Покроковий план впровадження кав'ярень самообслуговування</p>
+
+                <div class="timeline-3d">
+                    <div class="timeline-item-3d animate animate-delay-1">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">1. Аналіз та планування</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Обговорення деталей, вибір оптимальних локацій, узгодження дизайну та технічних питань.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-clock"></i> 1-2 тижні
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item-3d animate animate-delay-2">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">2. Підписання договору</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Вибір моделі співпраці, юридичне оформлення, узгодження графіка робіт та умов партнерства.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-file-contract"></i> 3-5 днів
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item-3d animate animate-delay-3">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">3. Встановлення обладнання</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Монтаж обладнання за 1 день без перерви роботи, налаштування системи оплати та обліку.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-tools"></i> 1 день на локацію
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item-3d animate animate-delay-4">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">4. Навчання персоналу</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Інструктаж для адміністраторів, надання інструкцій та контактів для техпідтримки.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-user-graduate"></i> 2-3 години
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item-3d animate animate-delay-5">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">5. Запуск та супровід</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Маркетингова підтримка запуску, регулярна аналітика продажів, оптимізація роботи обладнання.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-chart-line"></i> Постійно
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item-3d animate animate-delay-4">
+                        <div class="timeline-content-3d">
+                            <div class="timeline-circle-3d"></div>
+                            <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem; font-family: 'Montserrat', sans-serif;">6. Масштабування</h3>
+                            <p style="font-size: 1.1rem; color: var(--text-medium); line-height: 1.6;">
+                                Розгортання на інших об'єктах на основі успіху пілотного проекту та отриманого досвіду.
+                            </p>
+                            <div style="margin-top: 20px; color: var(--primary); font-weight: 600; font-size: 1rem;">
+                                <i class="fas fa-expand-arrows-alt"></i> За планом розвитку
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секція з фотографіями -->
+        <section class="photos-section" id="visualization">
+            <div class="container">
+                <h2 class="section-title center animate">Візуалізація кав'ярень самообслуговування</h2>
+                <p class="section-subtitle center animate animate-delay-1">Приклади розміщення обладнання в різних типах приміщень</p>
+
+                <div class="photos-grid">
+                    <div class="photo-card animate animate-delay-2">
+                        <img src="luxury-open-space-office-area-modern-building-glossy-floor-large-desk-with-chairs-chillout-area-floortoceiling-windows-with-urban-landscape-view-template-3d-rendering_124865-26575.heic"
+                             alt="Кавова зона в офісному приміщенні"
+                             class="photo-image">
+                        <div class="photo-caption">
+                            <h3>Кавова зона в офісі</h3>
+                            <p>Сучасна кавомашина преміум-класу в офісному просторі. Ідеально підходить для зон відпочинку співробітників, забезпечуючи доступ до якісної кави протягом усього робочого дня.</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-card animate animate-delay-3">
+                        <img src="fitnes.heic"
+                             alt="Кавова зона в торговому центрі"
+                             class="photo-image">
+                        <div class="photo-caption">
+                            <h3>Компактна кав’ярня в Фітес-залі</h3>
+                            <p>Кав’ярня створює атмосферу для спілкування, знайомств і відпочинку після занять. Займає мінімум місця, кав’ярня приносить прибуток окремо від абонементів. Не всі фітнес-зали мають кав’ярні, це може стати унікальною «фішкою».</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Кнопка переходу на сайт -->
+        <section class="website-button-section">
+            <div class="container">
+                <div class="website-button-wrapper">
+                    <a href="https://bianchiprof.com/vending_avtomaty" target="_blank" class="button-3d button-large animate">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Ознайомтеся з модельним рядом апаратів на нашому сайті</span>
+                    </a>
+                    <p class="animate animate-delay-1" style="margin-top: 20px; color: var(--text-light); font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        На сайті ви знайдете додаткову інформацію про нашу компанію,та детальні контакти для співпраці.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контактна інформація -->
+        <section class="section" id="contact-info" style="background: rgba(46, 139, 87, 0.03);">
+            <div class="container">
+                <h2 class="section-title center animate">Обговоріть проект з нами</h2>
+                <p class="section-subtitle center animate animate-delay-1">
+                    Запропонуйте об'єкт для пілотного запуску, і ми розробимо індивідуальну пропозицію для вашого бізнесу.
+                </p>
+
+                <!-- Контактна інформація -->
+                <div class="contact-grid-3d">
+                    <div class="contact-card-3d animate animate-delay-1">
+                        <div class="contact-icon-3d">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 20px;">Телефон</h3>
+                        <p style="font-size: 1.5rem; text-align: center; margin: 20px 0; color: var(--primary); font-weight: 700;">+380 (50) 343-06-00</p>
+                        <p style="margin-top: 15px; color: var(--text-light); text-align: center; font-size: 1rem;">Пн-Пт: 9:00-18:00</p>
+                        <a href="tel:+380503430600" class="button-3d" style="margin-top: 30px;">
+                            <i class="fas fa-phone"></i>
+                            <span>Зателефонувати</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-card-3d animate animate-delay-2">
+                        <div class="contact-icon-3d">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 20px;">Email</h3>
+                        <p style="font-size: 1.3rem; text-align: center; margin: 20px 0; color: var(--primary); font-weight: 700; word-break: break-all;">partnership@bianchiprof.ua</p>
+                        <p style="margin-top: 15px; color: var(--text-light); text-align: center; font-size: 1rem;">Відповідаємо протягом 24 годин</p>
+                        <a href="mailto:partnership@bianchiprof.ua" class="button-3d" style="margin-top: 30px;">
+                            <i class="fas fa-envelope"></i>
+                            <span>Написати</span>
+                        </a>
+                    </div>
+
+                    <div class="contact-card-3d animate animate-delay-3">
+                        <div class="contact-icon-3d">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 20px;">Адреса</h3>
+                        <p style="font-size: 1.3rem; text-align: center; margin: 20px 0; color: var(--primary); font-weight: 700;">м. Харків, вул. Польова, 49</p>
+                        <p style="margin-top: 15px; color: var(--text-light); text-align: center; font-size: 1rem;">Офіс для зустрічей за попереднім записом</p>
+                        <a href="https://maps.google.com/?q=Харків,+вул.+Польова,+49" target="_blank" class="button-3d" style="margin-top: 30px;">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>Показати на карті</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Створення анімаційних частинок фону
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 30;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+
+                    // Випадкові параметри частинки
+                    const size = Math.random() * 6 + 2;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 20;
+                    const duration = Math.random() * 20 + 20;
+
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.backgroundColor = 'rgba(46, 139, 87, 0.05)';
+
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            createParticles();
+
+            // Анімація при прокрутці
+            const animatedElements = document.querySelectorAll('.animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Ефект скролу для хедера
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function() {
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                }, 10);
+            });
+
+            // Плавна прокрутка
+            function smoothScrollTo(targetId) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerHeight - 30;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Обробка кліків
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    smoothScrollTo(href);
+
+                    // Анімація кнопки
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Ефект при наведенні на картки
+            const cards = document.querySelectorAll('.benefit-card-3d, .model-card-3d, .contact-card-3d, .photo-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '100';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+
+            // Інтерактивність для кнопок
+            const buttons = document.querySelectorAll('.nav-cta, .button-3d');
+            buttons.forEach(button => {
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = '';
+                });
+
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+
+            // Анімація для SVG логотипів
+            const logos = document.querySelectorAll('.logo-3d');
+            logos.forEach(logo => {
+                logo.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+
+                logo.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Ліниве завантаження зображень
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+
+            // Мобільна оптимізація
+            function isTouchDevice() {
+                return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            }
+
+            if (isTouchDevice()) {
+                document.body.classList.add('touch-device');
+                document.addEventListener('touchstart', function() {}, {passive: true});
+            }
+        });
+
+        // Додаткові функції
+        function makeCall(phoneNumber) {
+            window.location.href = 'tel:' + phoneNumber;
+            return false;
+        }
+
+        function sendEmail(emailAddress) {
+            window.location.href = 'mailto:' + emailAddress + '?subject=Комерційна пропозиція від BianchiProf';
+            return false;
+        }
+    </script>
+</body>
+</html>
